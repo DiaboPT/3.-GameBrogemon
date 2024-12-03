@@ -13,7 +13,6 @@ import androidx.core.view.WindowCompat
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.a3gamebrogemon.GameScreenView
 import com.example.a3gamebrogemon.ui.theme._3GameBrogemonTheme
 
 class MainActivity : ComponentActivity() {
@@ -28,14 +27,18 @@ class MainActivity : ComponentActivity() {
             val navController = rememberNavController()
             _3GameBrogemonTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { _ ->
-                    NavHost(navController = navController,
-                        startDestination = "game_start"){
-                        composable("game_start"){
+                    NavHost(
+                        navController = navController,
+                        startDestination = "game_start"
+                    ) {
+                        composable("game_start") {
                             StartMenu(onPlayClick = {
+                                // Navigate to the Brogemon selection screen
                                 navController.navigate("game_screen")
                             })
                         }
-                        composable("game_screen"){
+                        composable("game_screen") {
+                            // Replace this with the appropriate screen
                             GameScreenView()
                         }
                     }
@@ -44,4 +47,3 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
-

@@ -1,193 +1,61 @@
 package com.example.a3gamebrogemon
 
-import com.example.a3gamebrogemon.Enum_Test.*
-import java.util.EnumSet
-
 data class Brogemon(
     val name: String,
-    val type: EnumSet<Enum_Test>,
+    val type: Set<Type>,
+    val maxHealth: Int,
+    val health: Int = maxHealth,
+    val defense: Int,
+    val speed: Int,
+    val moves: List<Move>,
     val image: Int
 )
 
-val Brogemons = listOf(
+data class Move(
+    val name: String,
+    val type: Type,
+    val power: Int,
+    val accuracy: Int
+)
+
+enum class Type {
+    NORMAL, HOT, TREE, OCEAN, SAND, FREEZE, SHOCK
+}
+
+// Define moves
+val scratch = Move(name = "Scratch", type = Type.NORMAL, power = 50, accuracy = 95)
+val flameThrower = Move(name = "Flame Thrower", type = Type.HOT, power = 90, accuracy = 85)
+val vineWhip = Move(name = "Vine Whip", type = Type.TREE, power = 70, accuracy = 90)
+val waterGun = Move(name = "Water Gun", type = Type.OCEAN, power = 80, accuracy = 90)
+
+// Define Brogemons
+val brogemons = listOf(
     Brogemon(
         name = "Charader",
-        type = EnumSet.of(HOT),
+        type = setOf(Type.HOT),
+        maxHealth = 100,
+        defense = 30,
+        speed = 40,
+        moves = listOf(scratch, flameThrower),
         image = R.drawable.charader
     ),
     Brogemon(
         name = "Bullsaur",
-        type = EnumSet.of(TREE),
+        type = setOf(Type.TREE),
+        maxHealth = 120,
+        defense = 50,
+        speed = 35,
+        moves = listOf(scratch, vineWhip),
         image = R.drawable.bullsaur
     ),
     Brogemon(
         name = "Squirle",
-        type = EnumSet.of(OCEAN),
+        type = setOf(Type.OCEAN),
+        maxHealth = 110,
+        defense = 40,
+        speed = 45,
+        moves = listOf(scratch, waterGun),
         image = R.drawable.squirle
-    ),
-    Brogemon(
-        name = "Sandscrew",
-        type = EnumSet.of(SAND),
-        image = R.drawable.sandshrew
-    ),
-    Brogemon(
-        name = "Beaa-Tchoo",
-        type = EnumSet.of(FREEZE),
-        image = R.drawable.cubchoo
-    ),
-    Brogemon(
-        name = "Zy-yapper",
-        type = EnumSet.of(SHOCK),
-        image = R.drawable.yamper
-    ),
-    Brogemon(
-        name = "",
-        type = EnumSet.of(HOT, TREE),
-        image = R.drawable.charader
-    ),
-    Brogemon(
-        name = "",
-        type = EnumSet.of(HOT, OCEAN),
-        image = R.drawable.charader
-    ),
-    Brogemon(
-        name = "",
-        type = EnumSet.of(HOT, SAND),
-        image = R.drawable.charader
-    ),
-    Brogemon(
-        name = "",
-        type = EnumSet.of(HOT, FREEZE),
-        image = R.drawable.charader
-    ),
-    Brogemon(
-        name = "",
-        type = EnumSet.of(HOT, SHOCK),
-        image = R.drawable.charader
-    ),
-    Brogemon(
-        name = "",
-        type = EnumSet.of(TREE, HOT),
-        image = R.drawable.charader
-    ),
-    Brogemon(
-        name = "",
-        type = EnumSet.of(TREE, OCEAN),
-        image = R.drawable.charader
-    ),
-    Brogemon(
-        name = "",
-        type = EnumSet.of(TREE, SAND),
-        image = R.drawable.charader
-    ),
-    Brogemon(
-        name = "",
-        type = EnumSet.of(TREE, FREEZE),
-        image = R.drawable.charader
-    ),
-    Brogemon(
-        name = "",
-        type = EnumSet.of(TREE, SHOCK),
-        image = R.drawable.charader
-    ),
-    Brogemon(
-        name = "",
-        type = EnumSet.of(OCEAN, TREE),
-        image = R.drawable.charader
-    ),
-    Brogemon(
-        name = "",
-        type = EnumSet.of(OCEAN, SAND),
-        image = R.drawable.charader
-    ),
-    Brogemon(
-        name = "",
-        type = EnumSet.of(OCEAN, FREEZE),
-        image = R.drawable.charader
-    ),
-    Brogemon(
-        name = "",
-        type = EnumSet.of(OCEAN, SHOCK),
-        image = R.drawable.charader
-    ),
-    Brogemon(
-        name = "",
-        type = EnumSet.of(OCEAN, HOT),
-        image = R.drawable.charader
-    ),
-    Brogemon(
-        name = "",
-        type = EnumSet.of(SAND, TREE),
-        image = R.drawable.charader
-    ),
-    Brogemon(
-        name = "",
-        type = EnumSet.of(SAND, OCEAN),
-        image = R.drawable.charader
-    ),
-    Brogemon(
-        name = "",
-        type = EnumSet.of(SAND, FREEZE),
-        image = R.drawable.charader
-    ),
-    Brogemon(
-        name = "",
-        type = EnumSet.of(SAND, SHOCK),
-        image = R.drawable.charader
-    ),
-    Brogemon(
-        name = "",
-        type = EnumSet.of(SAND, HOT),
-        image = R.drawable.charader
-    ),
-    Brogemon(
-        name = "",
-        type = EnumSet.of(FREEZE, TREE),
-        image = R.drawable.charader
-    ),
-    Brogemon(
-        name = "",
-        type = EnumSet.of(FREEZE, OCEAN),
-        image = R.drawable.charader
-    ),
-    Brogemon(
-        name = "",
-        type = EnumSet.of(FREEZE, SAND),
-        image = R.drawable.charader
-    ),
-    Brogemon(
-        name = "",
-        type = EnumSet.of(FREEZE, SHOCK),
-        image = R.drawable.charader
-    ),
-    Brogemon(
-        name = "",
-        type = EnumSet.of(FREEZE, HOT),
-        image = R.drawable.charader
-    ),
-    Brogemon(
-        name = "",
-        type = EnumSet.of(SHOCK, TREE),
-        image = R.drawable.charader
-    ),
-    Brogemon(
-        name = "",
-        type = EnumSet.of(SHOCK, OCEAN),
-        image = R.drawable.charader
-    ),
-    Brogemon(
-        name = "",
-        type = EnumSet.of(SHOCK, SAND),
-        image = R.drawable.charader
-    ),
-    Brogemon(
-        name = "",
-        type = EnumSet.of(SHOCK, FREEZE),
-        image = R.drawable.charader
-    ),
-    Brogemon(
-        name = "",
-        type = EnumSet.of(SHOCK, HOT),
-        image = R.drawable.charader
     )
+    // Add other Brogemons here...
 )
