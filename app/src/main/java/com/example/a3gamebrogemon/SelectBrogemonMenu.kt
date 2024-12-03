@@ -73,7 +73,7 @@ fun SelectBrogemonMenu(
                 }
             }
 
-            Spacer(modifier = Modifier.width(20.dp))
+            Spacer(modifier = Modifier.width(32.dp))
 
             Column(
                 modifier = Modifier.weight(1f),
@@ -81,7 +81,7 @@ fun SelectBrogemonMenu(
             ) {
                 Text(text = infoText, fontSize = 18.sp)
 
-                Spacer(modifier = Modifier.height(10.dp))
+                Spacer(modifier = Modifier.height(8.dp))
 
                 selectedCharacter?.let { painterResource(id = it.image) }
                     ?.let {
@@ -93,7 +93,7 @@ fun SelectBrogemonMenu(
                         ShowStartButton = true
                     }
 
-                Spacer(modifier = Modifier.height(20.dp))
+                Spacer(modifier = Modifier.height(32.dp))
 
                 // Start Game Button
                 if(ShowStartButton)
@@ -111,7 +111,7 @@ fun CharacterRadioButton(
 ) {
     Row(verticalAlignment = Alignment.CenterVertically) {
         RadioButton(
-            selected = selectedCharacter?.name == character.name,
+            selected = selectedCharacter?.type == character.type,
             onClick = { onSelect(character) }
         )
         Text(text = character.name, modifier = Modifier.padding(start = 8.dp))
