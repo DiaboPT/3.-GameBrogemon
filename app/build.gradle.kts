@@ -5,6 +5,7 @@ plugins {
     alias(
         libs.plugins.kotlin.android
     )
+    id("kotlin-parcelize")
 }
 
 android {
@@ -101,6 +102,15 @@ dependencies {
     )
     implementation(
         libs.androidx.material3
+    )
+    implementation(
+        libs.firebase.common.ktx
+    )
+    implementation(
+        libs.firebase.auth.ktx
+    )
+    implementation(
+        libs.firebase.firestore.ktx
     )
     testImplementation(
         libs.junit

@@ -1,49 +1,37 @@
+// MainActivity.kt
 package com.example.a3gamebrogemon
 
-import android.annotation.SuppressLint
-import android.content.pm.ActivityInfo
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.Scaffold
-import androidx.compose.ui.Modifier
-import androidx.core.view.WindowCompat
-import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
-import androidx.navigation.compose.rememberNavController
-import com.example.a3gamebrogemon.ui.theme._3GameBrogemonTheme
+import androidx.compose.runtime.LaunchedEffect
+import com.example.a3gamebrogemon.views.BrogemonSelectionView
+import com.example.a3gamebrogemon.views.models.MainMenu
+import com.google.firebase.Firebase
+import com.google.firebase.FirebaseApp
+import com.google.firebase.auth.auth
+
+const val TAG = "ShoppingList"
 
 class MainActivity : ComponentActivity() {
-
-    @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
-        WindowCompat.setDecorFitsSystemWindows(window, false)
-        enableEdgeToEdge()
+        FirebaseApp.initializeApp(this) // Initializes Firebase
         setContent {
-            val navController = rememberNavController()
-            _3GameBrogemonTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { _ ->
-                    NavHost(
-                        navController = navController,
-                        startDestination = "game_start"
-                    ) {
-                        composable("game_start") {
-                            StartMenu(onPlayClick = {
-                                // Navigate to the Brogemon selection screen
-                                navController.navigate("game_screen")
-                            })
-                        }
-                        composable("game_screen") {
-                            // Replace this with the appropriate screen
-                            GameScreenView()
-                        }
-                    }
+        MainMenu { navigateTo ->
+                when (navigateTo) {
+                    "selectBrogemon" -> startActivity(
+                        Intent(this, BrogemonSelectionView::class.java)
+                    )
                 }
             }
+            LaunchedEffect(Unit) {
+                val auth = Firebase.auth
+                val currentUser = auth.currentUser
+                print(currentUser)
+            }
         }
+
     }
 }
